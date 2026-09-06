@@ -1,0 +1,17 @@
+{
+  "name": "Cap 27",
+  "short_name": "Cap 27",
+  "description": "Ton année, tenue à jour toute seule : cours, rythme, vélo, jalons.",
+  "lang": "fr",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#0e1116",
+  "theme_color": "#0e1116",
+  "icons": [
+    { "src": "icone-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icone-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "icone-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}

@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<title>Cap 27</title>
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#0e1116">
+<meta name="apple-mobile-web-app-title" content="Cap 27">
+<link rel="apple-touch-icon" href="icone-180.png">
+<link rel="icon" href="icone-192.png">
+<style>
+:root{--bg:#0e1116;--bg2:#171b22;--bg3:#1e232b;--line:#2b313a;--tx:#e8edf3;--tx2:#98a2ae;--tx3:#6b7683;
+--ac:#5aa9ff;--ok:#3fb950;--wa:#d29922;--ba:#f85149;--vi:#a371f7;--r:14px}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--tx);font:15px/1.5 -apple-system,"SF Pro Text",Segoe UI,Roboto,sans-serif;padding-bottom:88px}
+.w{max-width:820px;margin:0 auto;padding:14px 12px}
+header{padding:20px 14px 8px;text-align:center}
+header h1{font-size:19px;letter-spacing:.3px}
+header .s{color:var(--tx2);font-size:12px;margin-top:3px}
+nav{position:fixed;bottom:0;left:0;right:0;background:rgba(14,17,22,.97);backdrop-filter:blur(10px);
+border-top:1px solid var(--line);display:flex;justify-content:space-around;padding:7px 2px calc(7px + env(safe-area-inset-bottom));z-index:9}
+nav button{background:none;border:none;color:var(--tx3);font:inherit;font-size:10px;display:flex;flex-direction:column;
+align-items:center;gap:2px;cursor:pointer;padding:4px 8px}
+nav button .i{font-size:18px}
+nav button.on{color:var(--ac)}
+section{display:none}section.on{display:block}
+.c{background:var(--bg2);border:1px solid var(--line);border-radius:var(--r);padding:14px;margin-bottom:12px}
+.c h2{font-size:12px;text-transform:uppercase;letter-spacing:1px;color:var(--tx2);margin-bottom:10px}
+.c h2 span{text-transform:none;letter-spacing:0;color:var(--tx3);font-weight:400}
+.tl{border-left:2px solid var(--line);margin-left:6px;padding-left:12px}
+.it{position:relative;padding:5px 0;font-size:13.5px;display:flex;gap:8px}
+.it::before{content:"";position:absolute;left:-15.5px;top:12px;width:7px;height:7px;border-radius:50%;background:var(--line)}
+.it.dur::before{background:var(--ac)}.it.ancre::before{background:var(--vi)}.it.repas::before{background:var(--ok)}
+.it .h{color:var(--tx3);font-size:11.5px;font-variant-numeric:tabular-nums;flex:none;width:44px;padding-top:2px}
+.it .t{flex:1}
+.it .n{display:block;color:var(--tx3);font-size:11.5px;margin-top:2px;white-space:pre-wrap}
+.it.now{background:var(--bg3);border-radius:8px;margin:0 -6px;padding:5px 6px}
+.d{display:flex;gap:10px;padding:6px 0;border-top:1px solid var(--line);font-size:13px}
+.d:first-child{border-top:none}
+.d .k{flex:none;width:64px;color:var(--tx3);font-size:11.5px;font-variant-numeric:tabular-nums}
+.p{font-size:10px;padding:1px 7px;border-radius:11px;white-space:nowrap;display:inline-block}
+.p.USINE{background:rgba(90,169,255,.16);color:var(--ac)}
+.p.FAC{background:rgba(63,185,80,.16);color:var(--ok)}
+.p.LIBRE{background:rgba(163,113,247,.16);color:var(--vi)}
+.al{border-left:3px solid var(--wa);background:var(--bg3);border-radius:0 10px 10px 0;padding:8px 11px;margin:7px 0;font-size:13px}
+.al.iut_absent{border-left-color:var(--ba)}
+.al.journee_liberee{border-left-color:var(--ok)}
+.al.velo,.al.non_place{border-left-color:var(--vi)}
+.g{display:grid;grid-template-columns:repeat(auto-fit,minmax(132px,1fr));gap:9px}
+.k{background:var(--bg3);border-radius:10px;padding:10px}
+.k .v{font-size:18px;font-weight:700;font-variant-numeric:tabular-nums}
+.k .l{font-size:10.5px;color:var(--tx2);margin-top:2px}
+.bar{height:6px;background:var(--bg3);border-radius:4px;overflow:hidden;margin-top:5px}
+.bar i{display:block;height:100%;background:var(--ac)}
+.nav2{display:flex;align-items:center;justify-content:space-between;margin-bottom:9px}
+.nav2 b{font-size:14px}
+.nav2 button{background:var(--bg3);border:1px solid var(--line);color:var(--tx);border-radius:9px;padding:3px 12px;font-size:15px;cursor:pointer}
+.note{font-size:11.5px;color:var(--tx3);margin-top:8px;line-height:1.5}
+a{color:var(--ac)}
+.btn{background:var(--ac);border:none;color:#04121f;font:inherit;font-weight:700;border-radius:10px;
+padding:9px 16px;cursor:pointer;margin-bottom:8px}
+.err{background:rgba(248,81,73,.12);border:1px solid var(--ba);border-radius:var(--r);padding:12px;font-size:13px}
+</style>
+</head>
+<body>
+<header>
+  <h1>⛰️ Cap 27</h1>
+  <div class="s" id="maj">chargement…</div>
+</header>
+<div class="w">
+  <section id="v-jour" class="on">
+    <div class="c"><h2 id="t-jour">Aujourd’hui</h2><div id="resume" class="g"></div></div>
+    <div class="c"><h2>Ce qui vient</h2><div id="suite" class="tl"></div></div>
+    <div class="c"><h2>La journée entière</h2><div id="jour" class="tl"></div></div>
+    <div class="c" id="c-chg" style="display:none"><h2>Ce qui a changé <span>depuis la dernière synchronisation</span></h2><div id="chg"></div></div>
+  </section>
+
+  <section id="v-semaine">
+    <div class="c">
+      <div class="nav2"><button id="s-prev">‹</button><b id="s-titre"></b><button id="s-next">›</button></div>
+      <div id="s-entete" class="g"></div>
+    </div>
+    <div class="c"><h2>Sept jours</h2><div id="semaine"></div></div>
+  </section>
+
+  <section id="v-annee">
+    <div class="c"><h2>L’année <span>52 semaines</span></h2><div id="annee"></div></div>
+  </section>
+
+  <section id="v-obj">
+    <div class="c"><h2>Objectifs <span>les jalons datés, tirés du calendrier</span></h2><div id="objs"></div></div>
+  </section>
+
+  <section id="v-alertes">
+    <div class="c"><h2>Alertes <span>ce que le moteur n’a pas su résoudre seul</span></h2><div id="alertes"></div></div>
+    <div class="c"><h2>Installer l’app</h2>
+      <button id="installer" class="btn" style="display:none">Installer Cap 27</button>
+      <div class="note"><b>iPhone / iPad</b> — ouvre cette page dans <b>Safari</b>, touche le bouton Partager
+        (le carré avec la flèche), puis <b>Sur l’écran d’accueil</b>. Elle s’ouvrira en plein écran, comme une
+        vraie app, et fonctionnera même sans réseau : la dernière version consultée reste lisible dans le TGV.<br>
+        <b>Ordinateur</b> — Chrome ou Edge : l’icône d’installation apparaît dans la barre d’adresse.</div>
+    </div>
+    <div class="c"><h2>S’abonner</h2>
+      <div class="note">Sur iPhone : Réglages → Calendrier → Comptes → Ajouter un compte → Autre → <b>Ajouter un abonnement calendrier</b>, puis colle l’adresse du fichier. Le téléphone se met à jour tout seul — plus jamais de réimport.</div>
+      <div id="abos" class="note"></div>
+    </div>
+  </section>
+</div>
+
+<nav>
+  <button data-v="v-jour" class="on"><span class="i">☀️</span>Jour</button>
+  <button data-v="v-semaine"><span class="i">📅</span>Semaine</button>
+  <button data-v="v-annee"><span class="i">🗓️</span>Année</button>
+  <button data-v="v-obj"><span class="i">🎯</span>Objectifs</button>
+  <button data-v="v-alertes"><span class="i">🔔</span>Alertes</button>
+</nav>
+
+<script>
+'use strict';
+var D = null, SEM = 0;
+var JOURS = ['dimanche','lundi','mardi','mercredi','jeudi','vendredi','samedi'];
+var MOIS = ['janvier','février','mars','avril','mai','juin','juillet','août','septembre','octobre','novembre','décembre'];
+
+function esc(s){ var d = document.createElement('div'); d.textContent = s == null ? '' : s; return d.innerHTML; }
+function iso(d){ return d.getFullYear() + '-' + p2(d.getMonth()+1) + '-' + p2(d.getDate()); }
+function p2(n){ return (n<10?'0':'') + n; }
+function dfr(k){ var d = new Date(k + 'T12:00:00'); return JOURS[d.getDay()] + ' ' + d.getDate() + ' ' + MOIS[d.getMonth()]; }
+function lundiDe(k){ var d = new Date(k + 'T12:00:00'); d.setDate(d.getDate() - ((d.getDay()+6)%7)); return iso(d); }
+function plus(k, n){ var d = new Date(k + 'T12:00:00'); d.setDate(d.getDate()+n); return iso(d); }
+function mnt(hhmm){ var p = hhmm.split(':'); return (+p[0])*60 + (+p[1]); }
+
+fetch('cap27.json?' + Date.now()).then(function(r){ return r.json(); }).then(function(j){
+  D = j;
+  var t = new Date(j.genere_le);
+  document.getElementById('maj').textContent =
+    'à jour du ' + dfr(iso(t)) + ' à ' + p2(t.getHours()) + 'h' + p2(t.getMinutes());
+  SEM = trouverSemaine();
+  rJour(); rSemaine(); rAnnee(); rObj(); rAlertes();
+}).catch(function(e){
+  document.getElementById('maj').textContent = 'données indisponibles';
+  document.getElementById('jour').innerHTML =
+    '<div class="err">Impossible de lire <b>cap27.json</b>. Si tu ouvres ce fichier depuis le disque, ' +
+    'sers-le plutôt par GitHub Pages — le navigateur bloque la lecture locale.</div>';
+});
+
+function trouverSemaine(){
+  var l = lundiDe(iso(new Date()));
+  for (var i = 0; i < D.semaines.length; i++) if (D.semaines[i].lundi === l) return i;
+  for (var k = 0; k < D.semaines.length; k++) if (D.semaines[k].lundi > l) return k;
+  return 0;
+}
+
+/* ── Aujourd'hui ── */
+function rJour(){
+  var k = iso(new Date()), crens = D.jours[k] || [], maint = new Date();
+  var min = maint.getHours()*60 + maint.getMinutes();
+  document.getElementById('t-jour').textContent = dfr(k);
+
+  var sem = D.semaines.filter(function(s){ return s.lundi === lundiDe(k); })[0];
+  var velo = crens.filter(function(c){ return c.titre.indexOf('Vélo') >= 0 || c.titre.indexOf('Sortie longue') >= 0; });
+  var lever = crens.filter(function(c){ return c.titre.indexOf('Lever') >= 0 || c.titre.indexOf('SOHOUR') >= 0; })[0];
+  var ext = crens.filter(function(c){ return c.titre.toUpperCase().indexOf('XTINCTION') >= 0; })[0];
+  document.getElementById('resume').innerHTML =
+    kpi(lever ? lever.debut : '—', 'lever') +
+    kpi(ext ? ext.debut : '—', 'extinction') +
+    kpi(sem ? (sem.type + (sem.poste ? ' ' + sem.poste : '')) : '—', sem && sem.macrocycle ? sem.macrocycle : 'semaine') +
+    kpi(velo.length ? velo.length + ' séance' + (velo.length>1?'s':'') : '—', 'vélo aujourd’hui');
+
+  var apres = crens.filter(function(c){ return mnt(c.fin) >= min; });
+  document.getElementById('suite').innerHTML =
+    apres.slice(0, 5).map(function(c){ return ligne(c, min); }).join('') ||
+    '<div class="note">La journée est finie. Repose-toi : c’est aussi ça, tenir douze mois.</div>';
+  document.getElementById('jour').innerHTML =
+    crens.map(function(c){ return ligne(c, min); }).join('') || '<div class="note">Rien de prévu.</div>';
+
+  if (D.changements && D.changements.length){
+    document.getElementById('c-chg').style.display = '';
+    document.getElementById('chg').innerHTML =
+      D.changements.slice(0, 12).map(function(c){ return '<div class="al">' + esc(c.texte) + '</div>'; }).join('');
+  }
+}
+function kpi(v, l){ return '<div class="k"><div class="v">' + esc(v) + '</div><div class="l">' + esc(l) + '</div></div>'; }
+function ligne(c, min){
+  var enCours = min != null && mnt(c.debut) <= min && min < mnt(c.fin);
+  return '<div class="it ' + esc(c.couche) + (enCours ? ' now' : '') + '"><span class="h">' + esc(c.debut) +
+    '</span><span class="t">' + esc(c.titre) +
+    (c.note ? '<span class="n">' + esc(c.note) + '</span>' : '') + '</span></div>';
+}
+
+/* ── Semaine ── */
+function rSemaine(){
+  var s = D.semaines[SEM];
+  if (!s) return;
+  document.getElementById('s-titre').textContent = 'semaine du ' + dfr(s.lundi);
+  var pose = 0, jours = '';
+  for (var i = 0; i < 7; i++){
+    var k = plus(s.lundi, i), crens = D.jours[k] || [];
+    crens.forEach(function(c){
+      if (c.titre.indexOf('Vélo') >= 0 || c.titre.indexOf('Sortie longue') >= 0)
+        pose += (mnt(c.fin) - mnt(c.debut)) / 60;
+    });
+    var cles = crens.filter(function(c){ return c.couche === 'dur' || c.titre.indexOf('Vélo') >= 0
+      || c.titre.indexOf('Sortie longue') >= 0 || c.titre.indexOf('libre') >= 0; });
+    jours += '<div class="d"><div class="k">' + JOURS[new Date(k+'T12:00:00').getDay()].slice(0,3) + ' ' +
+      k.slice(8) + '</div><div>' +
+      (cles.slice(0,4).map(function(c){ return esc(c.titre); }).join(' · ') || '<span class="note">journée souple</span>') +
+      '</div></div>';
+  }
+  document.getElementById('s-entete').innerHTML =
+    kpi(s.type + (s.poste ? ' ' + s.poste : ''), 'type de semaine') +
+    kpi(s.macrocycle || '—', 'macrocycle') +
+    kpi(pose.toFixed(1) + ' h', 'vélo posé (cible ' + s.velo_cible_h + ' h)');
+  document.getElementById('semaine').innerHTML = jours;
+}
+document.getElementById('s-prev').onclick = function(){ if (SEM > 0){ SEM--; rSemaine(); } };
+document.getElementById('s-next').onclick = function(){ if (SEM < D.semaines.length-1){ SEM++; rSemaine(); } };
+
+/* ── Année ── */
+function rAnnee(){
+  var h = '', macro = null;
+  D.semaines.forEach(function(s, i){
+    if (s.macrocycle !== macro){
+      macro = s.macrocycle;
+      h += '<div class="d" style="border-top:none;padding-top:12px"><div class="k"></div><div><b>' +
+        esc(macro || 'hors bloc') + '</b></div></div>';
+    }
+    var evs = (D.evenements || []).filter(function(e){ return e.date >= s.lundi && e.date <= plus(s.lundi, 6)
+      && /[🎯🏁🏆🎓⛷🏖🌴⚓🇹🇳]/.test(e.titre); });
+    h += '<div class="d"><div class="k">' + s.lundi.slice(8) + '/' + s.lundi.slice(5,7) + '</div><div>' +
+      '<span class="p ' + s.type + '">' + s.type + (s.poste ? ' ' + s.poste : '') + '</span> ' +
+      '<span class="note" style="margin:0">' + s.velo_cible_h + ' h vélo</span>' +
+      (evs.length ? '<div class="note" style="margin-top:3px">' +
+        evs.slice(0,3).map(function(e){ return esc(e.titre); }).join(' · ') + '</div>' : '') +
+      '</div></div>';
+  });
+  document.getElementById('annee').innerHTML = h;
+}
+
+/* ── Objectifs : tirés des jalons datés, jamais inventés ── */
+var THEMES = [
+  {id:'permis', nom:'🚗 Permis', re:/permis|code|conduite|lubek|neph/i},
+  {id:'ecoles', nom:'🎓 Écoles d’ingénieur', re:/école|ecole|jpo|dossier|oraux|concours|candidat/i},
+  {id:'velo',   nom:'🚴 Vélo', re:/course|championnat|voironnais|casa|berry|licence|pco/i},
+  {id:'studio', nom:'🎙️ Studio', re:/studio/i},
+  {id:'argent', nom:'💶 Argent', re:/virement|papa|rembours|immobilier|orthodont|souleyman|prime/i}
+];
+function rObj(){
+  var auj = iso(new Date()), h = '';
+  THEMES.forEach(function(t){
+    var evs = (D.evenements || []).filter(function(e){ return t.re.test(e.titre); });
+    if (!evs.length) return;
+    var faits = evs.filter(function(e){ return e.date < auj; }).length;
+    var pc = Math.round(faits / evs.length * 100);
+    var suite = evs.filter(function(e){ return e.date >= auj; }).slice(0, 3);
+    h += '<div class="d" style="display:block"><b>' + t.nom + '</b> <span class="note" style="margin:0">' +
+      faits + ' / ' + evs.length + ' jalons passés</span>' +
+      '<div class="bar"><i style="width:' + pc + '%"></i></div>' +
+      suite.map(function(e){ return '<div class="note" style="margin-top:4px">' + e.date.slice(8) + '/' +
+        e.date.slice(5,7) + ' — ' + esc(e.titre) + '</div>'; }).join('') + '</div>';
+  });
+  document.getElementById('objs').innerHTML = h || '<div class="note">Aucun jalon daté.</div>';
+}
+
+/* ── Alertes ── */
+function rAlertes(){
+  var a = D.alertes || [];
+  document.getElementById('alertes').innerHTML = a.length
+    ? a.map(function(x){ return '<div class="al ' + esc(x.genre) + '">' + esc(x.texte) + '</div>'; }).join('')
+    : '<div class="note">Rien à arbitrer : le moteur a tout placé.</div>';
+  var base = location.href.replace(/index\.html.*$/, '');
+  document.getElementById('abos').innerHTML =
+    'Événements : <a href="evenements.ics">' + esc(base) + 'evenements.ics</a><br>' +
+    'Rythme : <a href="rythme.ics">' + esc(base) + 'rythme.ics</a>';
+}
+
+/* ── Installation sur l'écran d'accueil ── */
+if ('serviceWorker' in navigator) {
+  addEventListener('load', function(){ navigator.serviceWorker.register('sw.js').catch(function(){}); });
+}
+var invite = null;
+addEventListener('beforeinstallprompt', function(e){   // Android et ordinateur
+  e.preventDefault(); invite = e;
+  var b = document.getElementById('installer');
+  if (b) { b.style.display = ''; b.onclick = function(){ invite.prompt(); invite = null; b.style.display = 'none'; }; }
+});
+
+/* ── Navigation ── */
+Array.prototype.forEach.call(document.querySelectorAll('nav button'), function(b){
+  b.onclick = function(){
+    Array.prototype.forEach.call(document.querySelectorAll('section'), function(s){ s.classList.remove('on'); });
+    Array.prototype.forEach.call(document.querySelectorAll('nav button'), function(x){ x.classList.remove('on'); });
+    document.getElementById(b.dataset.v).classList.add('on');
+    b.classList.add('on');
+    scrollTo(0, 0);
+  };
+});
+</script>
+</body>
+</html>
