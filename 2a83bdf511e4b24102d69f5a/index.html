@@ -229,6 +229,13 @@ a{color:var(--bleu);text-decoration:none;border-bottom:1px solid rgba(110,160,23
   </div>
   <p class="note" id="su-note"></p>
 
+  <div class="st"><h2>Progression</h2><span class="info" id="pr-tend"></span></div>
+  <div class="mes"><div><div class="v" id="pr-7">—</div><div class="l">7 derniers jours</div></div>
+    <div><div class="v" id="pr-30">—</div><div class="l">30 derniers jours</div></div>
+    <div><div class="v" id="pr-best">—</div><div class="l">meilleure série</div></div></div>
+  <div id="pr-frise" style="display:flex;gap:3px;margin-top:14px"></div>
+  <p class="note" id="pr-mot"></p>
+
   <div class="st"><h2>Séries</h2><span class="info">jours d’affilée</span></div>
   <div id="su-series"></div>
 
@@ -494,6 +501,32 @@ function rSuivi(){
     : (fait>=cible ? 'Cible atteinte. La semaine prochaine repart de zéro.'
        : 'Il reste '+(cible-fait).toFixed(1).replace('.0','')+' h — '+heuresPosees(lundi).toFixed(1).replace('.0','')+
          ' h sont déjà posées au calendrier.');
+
+  /* progression : ce qui compte n est pas le jour parfait, c est la pente */
+  function taux(n){
+    var f=0,t=0;
+    for (var i=1;i<=n;i++){ var p=plancher(plus(AUJ,-i)); f+=p.faits; t+=p.total; }
+    return t?Math.round(f/t*100):0;
+  }
+  var t7=taux(7), t30=taux(30);
+  document.getElementById('pr-7').textContent=t7+'%';
+  document.getElementById('pr-30').textContent=t30+'%';
+  var best=0,cur=0;
+  for (var i=60;i>=0;i--){ if (plancher(plus(AUJ,-i)).faits===4){cur++;best=Math.max(best,cur);} else cur=0; }
+  document.getElementById('pr-best').textContent=best+' j';
+  var ecart=t7-t30;
+  document.getElementById('pr-tend').textContent = ecart>2?('en hausse de '+ecart+' pts'):(ecart<-2?('en baisse de '+(-ecart)+' pts'):'stable');
+  var fr='';
+  for (var i=13;i>=0;i--){
+    var p=plancher(plus(AUJ,-i)), h=Math.max(3,Math.round(p.faits/p.total*22));
+    var c=p.faits===p.total?'var(--vert)':(p.faits?'var(--or)':'var(--trait)');
+    fr+='<i style="flex:1;height:'+h+'px;background:'+c+';border-radius:2px;align-self:flex-end;display:block"></i>';
+  }
+  document.getElementById('pr-frise').innerHTML=fr;
+  document.getElementById('pr-mot').textContent = ecart>2
+    ? 'Tu tiens plus de choses qu il y a un mois. C est exactement le but : la pente, pas la perfection.'
+    : (t7>=75 ? 'Rythme solide. Garde-le, ne le durcis pas.'
+       : 'Vise une case de plus par jour. Les versions courtes comptent — c est comme ca que la pente remonte.');
 
   document.getElementById('su-series').innerHTML=SOCLE.map(function(x){
     var s=serie(x.id);
