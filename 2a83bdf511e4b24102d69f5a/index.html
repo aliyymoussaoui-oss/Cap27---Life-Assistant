@@ -12,12 +12,12 @@
 <link rel="apple-touch-icon" href="icone-180.png">
 <link rel="icon" href="icone-192.png">
 <style>
-:root{--bg:#0e1116;--bg2:#171b22;--bg3:#1e232b;--line:#2b313a;--tx:#e8edf3;--tx2:#98a2ae;--tx3:#6b7683;
---ac:#5aa9ff;--ok:#3fb950;--wa:#d29922;--ba:#f85149;--vi:#a371f7;--r:14px}
-*{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#0e1116;--bg2:#171b22;--bg3:#1e232b;--bg4:#252b34;--line:#2b313a;--tx:#e8edf3;--tx2:#98a2ae;
+--tx3:#6b7683;--ac:#5aa9ff;--ok:#3fb950;--wa:#d29922;--ba:#f85149;--vi:#a371f7;--r:14px}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
 body{background:var(--bg);color:var(--tx);font:15px/1.5 -apple-system,"SF Pro Text",Segoe UI,Roboto,sans-serif;padding-bottom:88px}
-.w{max-width:820px;margin:0 auto;padding:14px 12px}
-header{padding:20px 14px 8px;text-align:center}
+.w{max-width:840px;margin:0 auto;padding:14px 12px}
+header{padding:18px 14px 6px;text-align:center}
 header h1{font-size:19px;letter-spacing:.3px}
 header .s{color:var(--tx2);font-size:12px;margin-top:3px}
 nav{position:fixed;bottom:0;left:0;right:0;background:rgba(14,17,22,.97);backdrop-filter:blur(10px);
@@ -28,8 +28,9 @@ nav button .i{font-size:18px}
 nav button.on{color:var(--ac)}
 section{display:none}section.on{display:block}
 .c{background:var(--bg2);border:1px solid var(--line);border-radius:var(--r);padding:14px;margin-bottom:12px}
-.c h2{font-size:12px;text-transform:uppercase;letter-spacing:1px;color:var(--tx2);margin-bottom:10px}
-.c h2 span{text-transform:none;letter-spacing:0;color:var(--tx3);font-weight:400}
+.c h2{font-size:12px;text-transform:uppercase;letter-spacing:1px;color:var(--tx2);margin-bottom:10px;
+display:flex;justify-content:space-between;align-items:baseline;gap:8px}
+.c h2 span{text-transform:none;letter-spacing:0;color:var(--tx3);font-weight:400;font-size:11px}
 .tl{border-left:2px solid var(--line);margin-left:6px;padding-left:12px}
 .it{position:relative;padding:5px 0;font-size:13.5px;display:flex;gap:8px}
 .it::before{content:"";position:absolute;left:-15.5px;top:12px;width:7px;height:7px;border-radius:50%;background:var(--line)}
@@ -38,9 +39,10 @@ section{display:none}section.on{display:block}
 .it .t{flex:1}
 .it .n{display:block;color:var(--tx3);font-size:11.5px;margin-top:2px;white-space:pre-wrap}
 .it.now{background:var(--bg3);border-radius:8px;margin:0 -6px;padding:5px 6px}
-.d{display:flex;gap:10px;padding:6px 0;border-top:1px solid var(--line);font-size:13px}
+.it.passe{opacity:.45}
+.d{display:flex;gap:10px;padding:7px 0;border-top:1px solid var(--line);font-size:13px;align-items:flex-start}
 .d:first-child{border-top:none}
-.d .k{flex:none;width:64px;color:var(--tx3);font-size:11.5px;font-variant-numeric:tabular-nums}
+.d .k{flex:none;width:64px;color:var(--tx3);font-size:11.5px;font-variant-numeric:tabular-nums;padding-top:1px}
 .p{font-size:10px;padding:1px 7px;border-radius:11px;white-space:nowrap;display:inline-block}
 .p.USINE{background:rgba(90,169,255,.16);color:var(--ac)}
 .p.FAC{background:rgba(63,185,80,.16);color:var(--ok)}
@@ -50,19 +52,37 @@ section{display:none}section.on{display:block}
 .al.journee_liberee{border-left-color:var(--ok)}
 .al.velo,.al.non_place{border-left-color:var(--vi)}
 .g{display:grid;grid-template-columns:repeat(auto-fit,minmax(132px,1fr));gap:9px}
-.k{background:var(--bg3);border-radius:10px;padding:10px}
-.k .v{font-size:18px;font-weight:700;font-variant-numeric:tabular-nums}
-.k .l{font-size:10.5px;color:var(--tx2);margin-top:2px}
-.bar{height:6px;background:var(--bg3);border-radius:4px;overflow:hidden;margin-top:5px}
-.bar i{display:block;height:100%;background:var(--ac)}
+.k2{background:var(--bg3);border-radius:10px;padding:10px}
+.k2 .v{font-size:18px;font-weight:700;font-variant-numeric:tabular-nums}
+.k2 .l{font-size:10.5px;color:var(--tx2);margin-top:2px}
+.bar{height:7px;background:var(--bg3);border-radius:4px;overflow:hidden;margin-top:6px}
+.bar i{display:block;height:100%;background:var(--ac);transition:width .25s}
+.bar i.ok{background:var(--ok)}
+.coche{display:flex;align-items:center;gap:10px;padding:9px 0;border-top:1px solid var(--line);cursor:pointer;font-size:14px}
+.coche:first-of-type{border-top:none}
+.coche .b{flex:none;width:24px;height:24px;border-radius:7px;border:1.5px solid var(--line);
+display:flex;align-items:center;justify-content:center;font-size:14px;color:transparent}
+.coche.on .b{background:var(--ok);border-color:var(--ok);color:#08130a}
+.coche.on .t{color:var(--tx3);text-decoration:line-through}
+.coche .sous{display:block;color:var(--tx3);font-size:11.5px;text-decoration:none}
+.serie{font-size:11px;color:var(--wa);white-space:nowrap}
 .nav2{display:flex;align-items:center;justify-content:space-between;margin-bottom:9px}
 .nav2 b{font-size:14px}
-.nav2 button{background:var(--bg3);border:1px solid var(--line);color:var(--tx);border-radius:9px;padding:3px 12px;font-size:15px;cursor:pointer}
-.note{font-size:11.5px;color:var(--tx3);margin-top:8px;line-height:1.5}
-a{color:var(--ac)}
+button.mini{background:var(--bg3);border:1px solid var(--line);color:var(--tx);border-radius:9px;
+padding:4px 12px;font:inherit;font-size:13px;cursor:pointer}
 .btn{background:var(--ac);border:none;color:#04121f;font:inherit;font-weight:700;border-radius:10px;
-padding:9px 16px;cursor:pointer;margin-bottom:8px}
+padding:9px 16px;cursor:pointer}
+input[type=number],input[type=text]{background:var(--bg4);border:1px solid var(--line);border-radius:9px;
+color:var(--tx);font:inherit;font-size:14px;padding:7px 9px;width:88px;text-align:right}
+input[type=text]{width:100%;text-align:left}
+.note{font-size:11.5px;color:var(--tx3);margin-top:9px;line-height:1.5}
+a{color:var(--ac)}
 .err{background:rgba(248,81,73,.12);border:1px solid var(--ba);border-radius:var(--r);padding:12px;font-size:13px}
+.rangee{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:8px 0;border-top:1px solid var(--line)}
+.rangee:first-of-type{border-top:none}
+.rangee .t{flex:1;font-size:13.5px}
+.pastille{width:9px;height:9px;border-radius:50%;background:var(--line);display:inline-block;margin-right:5px}
+.pastille.ok{background:var(--ok)}
 </style>
 </head>
 <body>
@@ -71,230 +91,421 @@ padding:9px 16px;cursor:pointer;margin-bottom:8px}
   <div class="s" id="maj">chargement…</div>
 </header>
 <div class="w">
+
+  <!-- ═══ JOUR ═══ -->
   <section id="v-jour" class="on">
-    <div class="c"><h2 id="t-jour">Aujourd’hui</h2><div id="resume" class="g"></div></div>
+    <div class="c">
+      <h2 id="t-jour">Aujourd’hui <span id="t-serie"></span></h2>
+      <div id="plancher"></div>
+      <div class="bar"><i id="plancher-bar" style="width:0%"></i></div>
+      <div class="note" id="plancher-note">Quatre choses suffisent pour considérer la journée comme tenue.</div>
+    </div>
+    <div class="c"><h2>Le socle du jour <span id="socle-compte"></span></h2><div id="habitudes"></div></div>
     <div class="c"><h2>Ce qui vient</h2><div id="suite" class="tl"></div></div>
-    <div class="c"><h2>La journée entière</h2><div id="jour" class="tl"></div></div>
-    <div class="c" id="c-chg" style="display:none"><h2>Ce qui a changé <span>depuis la dernière synchronisation</span></h2><div id="chg"></div></div>
+    <div class="c"><h2>La journée entière <span id="t-type"></span></h2><div id="jour" class="tl"></div></div>
+    <div class="c" id="c-chg" style="display:none"><h2>Ce qui a changé <span>depuis la dernière synchro</span></h2><div id="chg"></div></div>
   </section>
 
+  <!-- ═══ SUIVI ═══ -->
+  <section id="v-suivi">
+    <div class="c">
+      <h2>Vélo — semaine en cours <span id="velo-macro"></span></h2>
+      <div id="velo-etat" class="g"></div>
+      <div class="bar"><i id="velo-bar" style="width:0%"></i></div>
+      <div style="display:flex;gap:8px;align-items:center;margin-top:11px;flex-wrap:wrap">
+        <span style="font-size:13px;color:var(--tx2)">Heures faites cette semaine</span>
+        <input type="number" id="velo-saisie" step="0.5" min="0" placeholder="0">
+        <button class="mini" id="velo-plus">+1 h</button>
+      </div>
+      <div class="note" id="velo-note"></div>
+    </div>
+    <div class="c"><h2>Séries <span>ce que tu tiens dans la durée</span></h2><div id="series"></div></div>
+    <div class="c"><h2>Argent <span id="dette-reste"></span></h2><div id="argent"></div>
+      <div class="note">Coche le jour où le virement part. Les échéances viennent du calendrier : si une date bouge, elle bouge ici aussi.</div>
+    </div>
+    <div class="c"><h2>À réserver <span>TGV MAX, 30 jours avant, jour pour jour</span></h2><div id="reservations"></div></div>
+  </section>
+
+  <!-- ═══ SEMAINE ═══ -->
   <section id="v-semaine">
     <div class="c">
-      <div class="nav2"><button id="s-prev">‹</button><b id="s-titre"></b><button id="s-next">›</button></div>
+      <div class="nav2"><button class="mini" id="s-prev">‹</button><b id="s-titre"></b><button class="mini" id="s-next">›</button></div>
       <div id="s-entete" class="g"></div>
     </div>
     <div class="c"><h2>Sept jours</h2><div id="semaine"></div></div>
   </section>
 
+  <!-- ═══ ANNÉE ═══ -->
   <section id="v-annee">
-    <div class="c"><h2>L’année <span>52 semaines</span></h2><div id="annee"></div></div>
+    <div class="c"><h2>Objectifs <span>les jalons datés du calendrier</span></h2><div id="objs"></div></div>
+    <div class="c"><h2>L’année <span id="annee-compte"></span></h2><div id="annee"></div></div>
   </section>
 
-  <section id="v-obj">
-    <div class="c"><h2>Objectifs <span>les jalons datés, tirés du calendrier</span></h2><div id="objs"></div></div>
-  </section>
-
-  <section id="v-alertes">
+  <!-- ═══ RÉGLAGES / ALERTES ═══ -->
+  <section id="v-plus">
     <div class="c"><h2>Alertes <span>ce que le moteur n’a pas su résoudre seul</span></h2><div id="alertes"></div></div>
     <div class="c"><h2>Installer l’app</h2>
-      <button id="installer" class="btn" style="display:none">Installer Cap 27</button>
-      <div class="note"><b>iPhone / iPad</b> — ouvre cette page dans <b>Safari</b>, touche le bouton Partager
-        (le carré avec la flèche), puis <b>Sur l’écran d’accueil</b>. Elle s’ouvrira en plein écran, comme une
-        vraie app, et fonctionnera même sans réseau : la dernière version consultée reste lisible dans le TGV.<br>
+      <button id="installer" class="btn" style="display:none;margin-bottom:8px">Installer Cap 27</button>
+      <div class="note"><b>iPhone / iPad</b> — ouvre cette page dans <b>Safari</b>, touche Partager (le carré
+        avec la flèche) puis <b>Sur l’écran d’accueil</b>. Elle s’ouvre en plein écran et fonctionne sans réseau.<br>
         <b>Ordinateur</b> — Chrome ou Edge : l’icône d’installation apparaît dans la barre d’adresse.</div>
     </div>
-    <div class="c"><h2>S’abonner</h2>
-      <div class="note">Sur iPhone : Réglages → Calendrier → Comptes → Ajouter un compte → Autre → <b>Ajouter un abonnement calendrier</b>, puis colle l’adresse du fichier. Le téléphone se met à jour tout seul — plus jamais de réimport.</div>
+    <div class="c"><h2>S’abonner aux calendriers</h2>
       <div id="abos" class="note"></div>
+      <div class="note">Réglages → Calendrier → Comptes → Ajouter un compte → Autre →
+        <b>Ajouter un abonnement calendrier</b>, puis <i>Actualiser : toutes les heures</i>.</div>
+    </div>
+    <div class="c"><h2>Tes données</h2>
+      <div class="note">Tes coches et tes heures vivent sur cet appareil. Exporte-les avant de changer
+        de téléphone — le fichier se réimporte tel quel.</div>
+      <div style="display:flex;gap:8px;margin-top:10px;flex-wrap:wrap">
+        <button class="mini" id="exporter">Exporter</button>
+        <button class="mini" id="importer">Importer</button>
+        <button class="mini" id="effacer">Tout effacer</button>
+      </div>
+      <div class="note" id="donnees-etat"></div>
     </div>
   </section>
 </div>
 
 <nav>
   <button data-v="v-jour" class="on"><span class="i">☀️</span>Jour</button>
+  <button data-v="v-suivi"><span class="i">📈</span>Suivi</button>
   <button data-v="v-semaine"><span class="i">📅</span>Semaine</button>
-  <button data-v="v-annee"><span class="i">🗓️</span>Année</button>
-  <button data-v="v-obj"><span class="i">🎯</span>Objectifs</button>
-  <button data-v="v-alertes"><span class="i">🔔</span>Alertes</button>
+  <button data-v="v-annee"><span class="i">🎯</span>Année</button>
+  <button data-v="v-plus"><span class="i">⚙️</span>Plus</button>
 </nav>
 
 <script>
 'use strict';
-var D = null, SEM = 0;
+var D = null, SEM = 0, E = {};
 var JOURS = ['dimanche','lundi','mardi','mercredi','jeudi','vendredi','samedi'];
 var MOIS = ['janvier','février','mars','avril','mai','juin','juillet','août','septembre','octobre','novembre','décembre'];
 
+/* ── état local : tes coches, tes heures ── */
+function charger(){
+  try { E = JSON.parse(localStorage.getItem('cap27') || '{}'); } catch(e) { E = {}; }
+  if (!E.coches) E.coches = {};      // "2026-09-07|maths" -> 1
+  if (!E.velo) E.velo = {};          // "2026-09-07" (lundi) -> heures
+  if (!E.verse) E.verse = {};        // "2026-10-01|PAPA" -> 1
+  return E;
+}
+function noter(){ try { localStorage.setItem('cap27', JSON.stringify(E)); } catch(e) {} }
+
 function esc(s){ var d = document.createElement('div'); d.textContent = s == null ? '' : s; return d.innerHTML; }
-function iso(d){ return d.getFullYear() + '-' + p2(d.getMonth()+1) + '-' + p2(d.getDate()); }
 function p2(n){ return (n<10?'0':'') + n; }
-function dfr(k){ var d = new Date(k + 'T12:00:00'); return JOURS[d.getDay()] + ' ' + d.getDate() + ' ' + MOIS[d.getMonth()]; }
-function lundiDe(k){ var d = new Date(k + 'T12:00:00'); d.setDate(d.getDate() - ((d.getDay()+6)%7)); return iso(d); }
-function plus(k, n){ var d = new Date(k + 'T12:00:00'); d.setDate(d.getDate()+n); return iso(d); }
-function mnt(hhmm){ var p = hhmm.split(':'); return (+p[0])*60 + (+p[1]); }
+function iso(d){ return d.getFullYear() + '-' + p2(d.getMonth()+1) + '-' + p2(d.getDate()); }
+function dfr(k){ var d = new Date(k+'T12:00:00'); return JOURS[d.getDay()] + ' ' + d.getDate() + ' ' + MOIS[d.getMonth()]; }
+function courtfr(k){ return k.slice(8) + '/' + k.slice(5,7); }
+function lundiDe(k){ var d = new Date(k+'T12:00:00'); d.setDate(d.getDate() - ((d.getDay()+6)%7)); return iso(d); }
+function plus(k, n){ var d = new Date(k+'T12:00:00'); d.setDate(d.getDate()+n); return iso(d); }
+function mnt(h){ var p = h.split(':'); return (+p[0])*60 + (+p[1]); }
+var AUJ = iso(new Date());
 
 fetch('cap27.json?' + Date.now()).then(function(r){ return r.json(); }).then(function(j){
-  D = j;
+  D = j; charger();
   var t = new Date(j.genere_le);
-  document.getElementById('maj').textContent =
-    'à jour du ' + dfr(iso(t)) + ' à ' + p2(t.getHours()) + 'h' + p2(t.getMinutes());
-  SEM = trouverSemaine();
-  rJour(); rSemaine(); rAnnee(); rObj(); rAlertes();
-}).catch(function(e){
+  document.getElementById('maj').textContent = 'à jour du ' + dfr(iso(t)) + ' à ' + p2(t.getHours()) + 'h' + p2(t.getMinutes());
+  SEM = semaineCourante();
+  toutRendre();
+}).catch(function(){
   document.getElementById('maj').textContent = 'données indisponibles';
-  document.getElementById('jour').innerHTML =
-    '<div class="err">Impossible de lire <b>cap27.json</b>. Si tu ouvres ce fichier depuis le disque, ' +
-    'sers-le plutôt par GitHub Pages — le navigateur bloque la lecture locale.</div>';
+  document.getElementById('jour').innerHTML = '<div class="err">Impossible de lire <b>cap27.json</b>.</div>';
 });
 
-function trouverSemaine(){
-  var l = lundiDe(iso(new Date()));
-  for (var i = 0; i < D.semaines.length; i++) if (D.semaines[i].lundi === l) return i;
-  for (var k = 0; k < D.semaines.length; k++) if (D.semaines[k].lundi > l) return k;
-  return 0;
+function toutRendre(){ rJour(); rSuivi(); rSemaine(); rAnnee(); rPlus(); }
+function semaineCourante(){
+  var l = lundiDe(AUJ);
+  for (var i=0;i<D.semaines.length;i++) if (D.semaines[i].lundi === l) return i;
+  for (var k=0;k<D.semaines.length;k++) if (D.semaines[k].lundi > l) return k;
+  return Math.max(0, D.semaines.length-1);
 }
 
-/* ── Aujourd'hui ── */
-function rJour(){
-  var k = iso(new Date()), crens = D.jours[k] || [], maint = new Date();
-  var min = maint.getHours()*60 + maint.getMinutes();
-  document.getElementById('t-jour').textContent = dfr(k);
+/* ══ le socle : ce qui doit tomber chaque jour ══ */
+var SOCLE = [
+  {id:'traitement', lab:'Traitement', sous:'matin, midi, soir — non négociable', motif:/traitement|rappel|prise/i, plancher:true},
+  {id:'maths', lab:'Maths', sous:'25 min — ou un seul exercice', motif:/math/i, plancher:true},
+  {id:'arabe', lab:'Arabe', sous:'30 min — ou dix mots', motif:/arabe/i},
+  {id:'coran', lab:'Coran', sous:'20 min — ou trois versets', motif:/coran/i},
+  {id:'lecture', lab:'Lecture', sous:'au lit — ou une page', motif:/moukhtasar|sira|lecture/i},
+  {id:'bouger', lab:'Bouger', sous:'même une heure facile', motif:/vélo|sortie longue|sourcéane|renforcement|récup/i, plancher:true},
+  {id:'extinction', lab:'Extinction tenue', sous:'écrans coupés avant', motif:/extinction/i, plancher:true}
+];
 
-  var sem = D.semaines.filter(function(s){ return s.lundi === lundiDe(k); })[0];
-  var velo = crens.filter(function(c){ return c.titre.indexOf('Vélo') >= 0 || c.titre.indexOf('Sortie longue') >= 0; });
-  var lever = crens.filter(function(c){ return c.titre.indexOf('Lever') >= 0 || c.titre.indexOf('SOHOUR') >= 0; })[0];
-  var ext = crens.filter(function(c){ return c.titre.toUpperCase().indexOf('XTINCTION') >= 0; })[0];
-  document.getElementById('resume').innerHTML =
-    kpi(lever ? lever.debut : '—', 'lever') +
-    kpi(ext ? ext.debut : '—', 'extinction') +
-    kpi(sem ? (sem.type + (sem.poste ? ' ' + sem.poste : '')) : '—', sem && sem.macrocycle ? sem.macrocycle : 'semaine') +
-    kpi(velo.length ? velo.length + ' séance' + (velo.length>1?'s':'') : '—', 'vélo aujourd’hui');
+function coche(k, id){ return !!E.coches[k + '|' + id]; }
+function basculer(k, id){
+  var cle = k + '|' + id;
+  if (E.coches[cle]) delete E.coches[cle]; else E.coches[cle] = 1;
+  noter(); toutRendre();
+}
+function serie(id){
+  var n = 0, k = AUJ;
+  if (!coche(k, id)) k = plus(k, -1);        // aujourd'hui pas encore fait : la série court jusqu'à hier
+  while (coche(k, id)) { n++; k = plus(k, -1); }
+  return n;
+}
+function planchePourcent(k){
+  var items = SOCLE.filter(function(s){ return s.plancher; });
+  var faits = items.filter(function(s){ return coche(k, s.id); }).length;
+  return {faits: faits, total: items.length};
+}
+
+/* ══ JOUR ══ */
+function rJour(){
+  var crens = D.jours[AUJ] || [], now = new Date(), min = now.getHours()*60 + now.getMinutes();
+  document.getElementById('t-jour').firstChild.nodeValue = dfr(AUJ) + ' ';
+  var sem = D.semaines.filter(function(s){ return s.lundi === lundiDe(AUJ); })[0];
+  document.getElementById('t-type').textContent = sem ? (sem.type + (sem.poste ? ' ' + sem.poste : '')) : '';
+
+  var p = planchePourcent(AUJ);
+  var s = serie('plancher');
+  document.getElementById('t-serie').textContent = s > 1 ? s + ' jours d’affilée' : '';
+  document.getElementById('plancher').innerHTML = SOCLE.filter(function(x){ return x.plancher; })
+    .map(function(x){ return ligneCoche(AUJ, x); }).join('');
+  var barre = document.getElementById('plancher-bar');
+  barre.style.width = Math.round(p.faits / p.total * 100) + '%';
+  barre.className = p.faits === p.total ? 'ok' : '';
+  document.getElementById('plancher-note').textContent = p.faits === p.total
+    ? 'Journée tenue. Le reste est du bonus.'
+    : 'Quatre choses suffisent pour considérer la journée comme tenue — ' + p.faits + ' sur ' + p.total + '.';
+
+  var autres = SOCLE.filter(function(x){ return !x.plancher; });
+  document.getElementById('socle-compte').textContent =
+    autres.filter(function(x){ return coche(AUJ, x.id); }).length + ' / ' + autres.length;
+  document.getElementById('habitudes').innerHTML = autres.map(function(x){ return ligneCoche(AUJ, x); }).join('');
+  brancherCoches();
 
   var apres = crens.filter(function(c){ return mnt(c.fin) >= min; });
-  document.getElementById('suite').innerHTML =
-    apres.slice(0, 5).map(function(c){ return ligne(c, min); }).join('') ||
-    '<div class="note">La journée est finie. Repose-toi : c’est aussi ça, tenir douze mois.</div>';
-  document.getElementById('jour').innerHTML =
-    crens.map(function(c){ return ligne(c, min); }).join('') || '<div class="note">Rien de prévu.</div>';
+  document.getElementById('suite').innerHTML = apres.slice(0,5).map(function(c){ return ligne(c, min); }).join('')
+    || '<div class="note">La journée est finie. Repose-toi : c’est aussi ça, tenir douze mois.</div>';
+  document.getElementById('jour').innerHTML = crens.map(function(c){ return ligne(c, min); }).join('')
+    || '<div class="note">Rien de prévu.</div>';
 
   if (D.changements && D.changements.length){
     document.getElementById('c-chg').style.display = '';
-    document.getElementById('chg').innerHTML =
-      D.changements.slice(0, 12).map(function(c){ return '<div class="al">' + esc(c.texte) + '</div>'; }).join('');
+    document.getElementById('chg').innerHTML = D.changements.slice(0,12)
+      .map(function(c){ return '<div class="al">' + esc(c.texte) + '</div>'; }).join('');
   }
 }
-function kpi(v, l){ return '<div class="k"><div class="v">' + esc(v) + '</div><div class="l">' + esc(l) + '</div></div>'; }
+function ligneCoche(k, x){
+  var faite = coche(k, x.id), s = serie(x.id);
+  return '<label class="coche' + (faite ? ' on' : '') + '" data-k="' + k + '" data-id="' + x.id + '">' +
+    '<span class="b">✓</span><span class="t">' + esc(x.lab) +
+    '<span class="sous">' + esc(x.sous) + '</span></span>' +
+    (s > 1 ? '<span class="serie">' + s + ' j</span>' : '') + '</label>';
+}
+function brancherCoches(){
+  Array.prototype.forEach.call(document.querySelectorAll('.coche[data-id]'), function(el){
+    el.onclick = function(){ basculer(el.dataset.k, el.dataset.id); };
+  });
+}
 function ligne(c, min){
   var enCours = min != null && mnt(c.debut) <= min && min < mnt(c.fin);
-  return '<div class="it ' + esc(c.couche) + (enCours ? ' now' : '') + '"><span class="h">' + esc(c.debut) +
-    '</span><span class="t">' + esc(c.titre) +
+  var passe = min != null && mnt(c.fin) < min;
+  return '<div class="it ' + esc(c.couche) + (enCours ? ' now' : (passe ? ' passe' : '')) + '">' +
+    '<span class="h">' + esc(c.debut) + '</span><span class="t">' + esc(c.titre) +
     (c.note ? '<span class="n">' + esc(c.note) + '</span>' : '') + '</span></div>';
 }
 
-/* ── Semaine ── */
-function rSemaine(){
-  var s = D.semaines[SEM];
-  if (!s) return;
-  document.getElementById('s-titre').textContent = 'semaine du ' + dfr(s.lundi);
-  var pose = 0, jours = '';
-  for (var i = 0; i < 7; i++){
-    var k = plus(s.lundi, i), crens = D.jours[k] || [];
-    crens.forEach(function(c){
-      if (c.titre.indexOf('Vélo') >= 0 || c.titre.indexOf('Sortie longue') >= 0)
-        pose += (mnt(c.fin) - mnt(c.debut)) / 60;
+/* ══ SUIVI ══ */
+function heuresPosees(lundi){
+  var h = 0;
+  for (var i=0;i<7;i++){
+    (D.jours[plus(lundi,i)] || []).forEach(function(c){
+      if (/vélo|sortie longue|récupération active/i.test(c.titre)) h += (mnt(c.fin)-mnt(c.debut))/60;
     });
-    var cles = crens.filter(function(c){ return c.couche === 'dur' || c.titre.indexOf('Vélo') >= 0
-      || c.titre.indexOf('Sortie longue') >= 0 || c.titre.indexOf('libre') >= 0; });
-    jours += '<div class="d"><div class="k">' + JOURS[new Date(k+'T12:00:00').getDay()].slice(0,3) + ' ' +
-      k.slice(8) + '</div><div>' +
-      (cles.slice(0,4).map(function(c){ return esc(c.titre); }).join(' · ') || '<span class="note">journée souple</span>') +
-      '</div></div>';
+  }
+  return h;
+}
+function rSuivi(){
+  var lundi = lundiDe(AUJ);
+  var sem = D.semaines.filter(function(s){ return s.lundi === lundi; })[0] || D.semaines[SEM];
+  var cible = sem ? sem.velo_cible_h : 0;
+  var pose = heuresPosees(sem ? sem.lundi : lundi);
+  var fait = +(E.velo[lundi] || 0);
+  document.getElementById('velo-macro').textContent = sem && sem.macrocycle ? sem.macrocycle : '';
+  document.getElementById('velo-etat').innerHTML =
+    kpi(fait.toFixed(1) + ' h', 'faites') + kpi(cible + ' h', 'visées') + kpi(pose.toFixed(1) + ' h', 'posées au calendrier');
+  var b = document.getElementById('velo-bar');
+  b.style.width = Math.min(100, cible ? fait/cible*100 : 0) + '%';
+  b.className = (cible && fait >= cible) ? 'ok' : '';
+  var champ = document.getElementById('velo-saisie');
+  champ.value = fait || '';
+  champ.onchange = function(){ E.velo[lundi] = +champ.value || 0; noter(); rSuivi(); };
+  document.getElementById('velo-plus').onclick = function(){
+    E.velo[lundi] = (+E.velo[lundi] || 0) + 1; noter(); rSuivi();
+  };
+  document.getElementById('velo-note').textContent = !cible ? 'Pas de cible cette semaine : repos assumé.'
+    : (fait >= cible ? 'Cible atteinte. La semaine prochaine repart de zéro.'
+       : 'Il reste ' + (cible - fait).toFixed(1) + ' h. La version courte compte aussi.');
+
+  document.getElementById('series').innerHTML = SOCLE.map(function(x){
+    var s = serie(x.id);
+    return '<div class="rangee"><span class="t"><span class="pastille' + (coche(AUJ,x.id)?' ok':'') + '"></span>' +
+      esc(x.lab) + '</span><b style="color:' + (s>2?'var(--ok)':'var(--tx2)') + '">' +
+      (s ? s + ' jour' + (s>1?'s':'') : '—') + '</b></div>';
+  }).join('');
+
+  /* argent : les virements viennent du calendrier */
+  var vir = (D.evenements||[]).filter(function(e){ return /virement|orthodont/i.test(e.titre); });
+  var du = 0, rendu = 0;
+  var lignes = vir.map(function(e){
+    var m = e.titre.match(/(\d+[.,]?\d*)\s*€/);
+    var montant = m ? parseFloat(m[1].replace(',','.')) : 0;
+    var cle = e.date + '|' + e.titre.slice(0,18);
+    var ok = !!E.verse[cle];
+    if (/papa/i.test(e.titre)) { du += montant; if (ok) rendu += montant; }
+    return '<div class="rangee"><span class="t">' + courtfr(e.date) + ' · ' + esc(e.titre) + '</span>' +
+      '<button class="mini' + (ok?'':'')+'" data-verse="' + esc(cle) + '" style="' +
+      (ok ? 'border-color:var(--ok);color:var(--ok)' : '') + '">' + (ok ? 'versé ✓' : 'versé ?') + '</button></div>';
+  }).join('');
+  document.getElementById('argent').innerHTML = lignes || '<div class="note">Aucune échéance au calendrier.</div>';
+  document.getElementById('dette-reste').textContent = du ? ('reste ' + Math.round(du - rendu) + ' € sur ' + Math.round(du) + ' €') : '';
+  Array.prototype.forEach.call(document.querySelectorAll('[data-verse]'), function(b){
+    b.onclick = function(){
+      var c = b.dataset.verse;
+      if (E.verse[c]) delete E.verse[c]; else E.verse[c] = 1;
+      noter(); rSuivi();
+    };
+  });
+
+  /* réservations TGV MAX : 30 jours avant, jour pour jour */
+  var res = [];
+  (D.evenements||[]).forEach(function(e){
+    if (!e.jusqua) return;
+    var d = new Date(e.date + 'T12:00:00'); d.setDate(d.getDate() - 30);
+    var quand = iso(d);
+    if (quand >= plus(AUJ, -3) && quand <= plus(AUJ, 45)) res.push({quand: quand, e: e});
+  });
+  res.sort(function(a,b){ return a.quand < b.quand ? -1 : 1; });
+  document.getElementById('reservations').innerHTML = res.length ? res.map(function(r){
+    var urgent = r.quand <= AUJ;
+    return '<div class="rangee"><span class="t">' +
+      '<b style="color:' + (urgent?'var(--ba)':'var(--ac)') + '">' + courtfr(r.quand) + '</b> — ' +
+      esc(r.e.titre) + '<span class="sous" style="color:var(--tx3);font-size:11.5px">départ le ' +
+      courtfr(r.e.date) + '</span></span>' + (urgent ? '<span class="serie">à faire</span>' : '') + '</div>';
+  }).join('') : '<div class="note">Rien à réserver dans les six prochaines semaines.</div>';
+}
+function kpi(v,l){ return '<div class="k2"><div class="v">' + esc(v) + '</div><div class="l">' + esc(l) + '</div></div>'; }
+
+/* ══ SEMAINE ══ */
+function rSemaine(){
+  var s = D.semaines[SEM]; if (!s) return;
+  document.getElementById('s-titre').textContent = 'semaine du ' + dfr(s.lundi);
+  var jours = '';
+  for (var i=0;i<7;i++){
+    var k = plus(s.lundi, i), crens = D.jours[k] || [];
+    var cles = crens.filter(function(c){ return c.couche === 'dur' || /vélo|sortie longue|libre|sourcéane/i.test(c.titre); });
+    var p = planchePourcent(k);
+    jours += '<div class="d"><div class="k">' + JOURS[new Date(k+'T12:00:00').getDay()].slice(0,3) + ' ' + k.slice(8) +
+      (k <= AUJ ? '<br><span style="color:' + (p.faits===p.total?'var(--ok)':'var(--tx3)') + '">' + p.faits + '/' + p.total + '</span>' : '') +
+      '</div><div>' + (cles.slice(0,4).map(function(c){ return esc(c.titre); }).join(' · ') ||
+        '<span class="note" style="margin:0">journée souple</span>') + '</div></div>';
   }
   document.getElementById('s-entete').innerHTML =
     kpi(s.type + (s.poste ? ' ' + s.poste : ''), 'type de semaine') +
     kpi(s.macrocycle || '—', 'macrocycle') +
-    kpi(pose.toFixed(1) + ' h', 'vélo posé (cible ' + s.velo_cible_h + ' h)');
+    kpi(heuresPosees(s.lundi).toFixed(1) + ' h', 'vélo posé · cible ' + s.velo_cible_h + ' h');
   document.getElementById('semaine').innerHTML = jours;
 }
-document.getElementById('s-prev').onclick = function(){ if (SEM > 0){ SEM--; rSemaine(); } };
-document.getElementById('s-next').onclick = function(){ if (SEM < D.semaines.length-1){ SEM++; rSemaine(); } };
 
-/* ── Année ── */
-function rAnnee(){
-  var h = '', macro = null;
-  D.semaines.forEach(function(s, i){
-    if (s.macrocycle !== macro){
-      macro = s.macrocycle;
-      h += '<div class="d" style="border-top:none;padding-top:12px"><div class="k"></div><div><b>' +
-        esc(macro || 'hors bloc') + '</b></div></div>';
-    }
-    var evs = (D.evenements || []).filter(function(e){ return e.date >= s.lundi && e.date <= plus(s.lundi, 6)
-      && /[🎯🏁🏆🎓⛷🏖🌴⚓🇹🇳]/.test(e.titre); });
-    h += '<div class="d"><div class="k">' + s.lundi.slice(8) + '/' + s.lundi.slice(5,7) + '</div><div>' +
-      '<span class="p ' + s.type + '">' + s.type + (s.poste ? ' ' + s.poste : '') + '</span> ' +
-      '<span class="note" style="margin:0">' + s.velo_cible_h + ' h vélo</span>' +
-      (evs.length ? '<div class="note" style="margin-top:3px">' +
-        evs.slice(0,3).map(function(e){ return esc(e.titre); }).join(' · ') + '</div>' : '') +
-      '</div></div>';
-  });
-  document.getElementById('annee').innerHTML = h;
-}
-
-/* ── Objectifs : tirés des jalons datés, jamais inventés ── */
+/* ══ ANNÉE ══ */
 var THEMES = [
-  {id:'permis', nom:'🚗 Permis', re:/permis|code|conduite|lubek|neph/i},
-  {id:'ecoles', nom:'🎓 Écoles d’ingénieur', re:/école|ecole|jpo|dossier|oraux|concours|candidat/i},
-  {id:'velo',   nom:'🚴 Vélo', re:/course|championnat|voironnais|casa|berry|licence|pco/i},
-  {id:'studio', nom:'🎙️ Studio', re:/studio/i},
-  {id:'argent', nom:'💶 Argent', re:/virement|papa|rembours|immobilier|orthodont|souleyman|prime/i}
+  {nom:'🚗 Permis', re:/permis|code|conduite|lubek|neph/i},
+  {nom:'🎓 Écoles d’ingénieur', re:/école|ecole|jpo|dossier|oraux|concours|candidat|ensta|sigma/i},
+  {nom:'🚴 Vélo', re:/course|championnat|voironnais|casa|berry|licence|pco|gp /i},
+  {nom:'🎙️ Studio', re:/studio/i},
+  {nom:'💶 Argent', re:/virement|papa|rembours|immobilier|orthodont|souleyman|prime/i}
 ];
-function rObj(){
-  var auj = iso(new Date()), h = '';
+function rAnnee(){
+  var h = '';
   THEMES.forEach(function(t){
-    var evs = (D.evenements || []).filter(function(e){ return t.re.test(e.titre); });
+    var evs = (D.evenements||[]).filter(function(e){ return t.re.test(e.titre); });
     if (!evs.length) return;
-    var faits = evs.filter(function(e){ return e.date < auj; }).length;
-    var pc = Math.round(faits / evs.length * 100);
-    var suite = evs.filter(function(e){ return e.date >= auj; }).slice(0, 3);
+    var faits = evs.filter(function(e){ return e.date < AUJ; }).length;
+    var suite = evs.filter(function(e){ return e.date >= AUJ; }).slice(0,3);
     h += '<div class="d" style="display:block"><b>' + t.nom + '</b> <span class="note" style="margin:0">' +
-      faits + ' / ' + evs.length + ' jalons passés</span>' +
-      '<div class="bar"><i style="width:' + pc + '%"></i></div>' +
-      suite.map(function(e){ return '<div class="note" style="margin-top:4px">' + e.date.slice(8) + '/' +
-        e.date.slice(5,7) + ' — ' + esc(e.titre) + '</div>'; }).join('') + '</div>';
+      faits + ' / ' + evs.length + ' passés</span><div class="bar"><i style="width:' +
+      Math.round(faits/evs.length*100) + '%"></i></div>' +
+      suite.map(function(e){ return '<div class="note" style="margin-top:4px">' + courtfr(e.date) + ' — ' + esc(e.titre) + '</div>'; }).join('') +
+      '</div>';
   });
   document.getElementById('objs').innerHTML = h || '<div class="note">Aucun jalon daté.</div>';
+
+  var a = '', macro = null;
+  D.semaines.forEach(function(s){
+    if (s.macrocycle !== macro){
+      macro = s.macrocycle;
+      a += '<div class="d" style="border-top:none;padding-top:12px"><div class="k"></div><div><b>' +
+        esc(macro || 'hors bloc') + '</b></div></div>';
+    }
+    var courante = s.lundi === lundiDe(AUJ);
+    a += '<div class="d"' + (courante ? ' style="background:var(--bg3);border-radius:8px"' : '') +
+      '><div class="k">' + courtfr(s.lundi) + '</div><div>' +
+      '<span class="p ' + s.type + '">' + s.type + (s.poste ? ' ' + s.poste : '') + '</span> ' +
+      '<span class="note" style="margin:0">' + s.velo_cible_h + ' h vélo</span></div></div>';
+  });
+  document.getElementById('annee-compte').textContent = D.semaines.length + ' semaines';
+  document.getElementById('annee').innerHTML = a;
 }
 
-/* ── Alertes ── */
-function rAlertes(){
-  var a = D.alertes || [];
-  document.getElementById('alertes').innerHTML = a.length
-    ? a.map(function(x){ return '<div class="al ' + esc(x.genre) + '">' + esc(x.texte) + '</div>'; }).join('')
+/* ══ PLUS ══ */
+function rPlus(){
+  var al = D.alertes || [];
+  document.getElementById('alertes').innerHTML = al.length
+    ? al.map(function(x){ return '<div class="al ' + esc(x.genre) + '">' + esc(x.texte) + '</div>'; }).join('')
     : '<div class="note">Rien à arbitrer : le moteur a tout placé.</div>';
-  var base = location.href.replace(/index\.html.*$/, '');
+  var base = location.href.replace(/index\.html.*$/, '').replace(/^https?:/, 'webcal:');
   document.getElementById('abos').innerHTML =
-    'Événements : <a href="evenements.ics">' + esc(base) + 'evenements.ics</a><br>' +
-    'Rythme : <a href="rythme.ics">' + esc(base) + 'rythme.ics</a>';
+    'Événements : <a href="' + base + 'evenements.ics">' + esc(base) + 'evenements.ics</a><br><br>' +
+    'Rythme : <a href="' + base + 'rythme.ics">' + esc(base) + 'rythme.ics</a>';
+  var n = Object.keys(E.coches).length;
+  document.getElementById('donnees-etat').textContent = n + ' coche' + (n>1?'s':'') + ' enregistrée' + (n>1?'s':'') + ' sur cet appareil.';
 }
+document.getElementById('exporter').onclick = function(){
+  var blob = new Blob([JSON.stringify(E, null, 1)], {type:'application/json'});
+  var a = document.createElement('a');
+  a.href = URL.createObjectURL(blob); a.download = 'cap27-suivi-' + AUJ + '.json';
+  document.body.appendChild(a); a.click(); a.remove();
+};
+document.getElementById('importer').onclick = function(){
+  var i = document.createElement('input'); i.type = 'file'; i.accept = '.json';
+  i.onchange = function(){
+    var f = i.files[0]; if (!f) return;
+    var l = new FileReader();
+    l.onload = function(){
+      try { E = JSON.parse(l.result); noter(); toutRendre(); alert('Suivi réimporté.'); }
+      catch(e){ alert('Fichier illisible.'); }
+    };
+    l.readAsText(f);
+  };
+  i.click();
+};
+document.getElementById('effacer').onclick = function(){
+  if (!confirm('Effacer toutes tes coches et tes heures sur cet appareil ?')) return;
+  E = {coches:{}, velo:{}, verse:{}}; noter(); toutRendre();
+};
 
-/* ── Installation sur l'écran d'accueil ── */
+/* ── installation ── */
 if ('serviceWorker' in navigator) {
   addEventListener('load', function(){ navigator.serviceWorker.register('sw.js').catch(function(){}); });
 }
 var invite = null;
-addEventListener('beforeinstallprompt', function(e){   // Android et ordinateur
+addEventListener('beforeinstallprompt', function(e){
   e.preventDefault(); invite = e;
   var b = document.getElementById('installer');
-  if (b) { b.style.display = ''; b.onclick = function(){ invite.prompt(); invite = null; b.style.display = 'none'; }; }
+  if (b){ b.style.display = ''; b.onclick = function(){ invite.prompt(); invite = null; b.style.display = 'none'; }; }
 });
 
-/* ── Navigation ── */
+/* ── navigation ── */
+document.getElementById('s-prev').onclick = function(){ if (SEM>0){ SEM--; rSemaine(); } };
+document.getElementById('s-next').onclick = function(){ if (SEM<D.semaines.length-1){ SEM++; rSemaine(); } };
 Array.prototype.forEach.call(document.querySelectorAll('nav button'), function(b){
   b.onclick = function(){
     Array.prototype.forEach.call(document.querySelectorAll('section'), function(s){ s.classList.remove('on'); });
     Array.prototype.forEach.call(document.querySelectorAll('nav button'), function(x){ x.classList.remove('on'); });
     document.getElementById(b.dataset.v).classList.add('on');
-    b.classList.add('on');
-    scrollTo(0, 0);
+    b.classList.add('on'); scrollTo(0,0);
   };
 });
 </script>
